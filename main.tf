@@ -1,4 +1,4 @@
 module "vpc" {
-  source = "./module"
+  source = "./module/vpc"
   vpc_cidr = var.vpc_cidr
 }
