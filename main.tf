@@ -1,4 +1,4 @@
 module "vpc" {
-  source = "./tf-module-vpc"
-  vpc_cidr = var.vpc_cidr
+  source = "modules"
+  vpc_cidr = 10.0.0.0/16
 }
