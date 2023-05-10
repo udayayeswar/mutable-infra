@@ -11,9 +11,9 @@ resource "aws_subnet" "main" {
   }
 }
 
-resource "aws_security_group" "allow_tls" {
-  name        = "allow_tls"
-  description = "Allow TLS inbound traffic"
+resource "aws_security_group" "allow_ssh" {
+  name        = "allow_ssh"
+  description = "Allow ssh inbound traffic"
   vpc_id      = aws_vpc.main.id
 
   ingress {
