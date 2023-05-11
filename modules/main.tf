@@ -60,10 +60,7 @@ resource "aws_route_table" "example" {
     gateway_id = "igw-02d7e6a9c6afda95e"
   }
 
-  route {
-    ipv6_cidr_block        = "10.0.0.0/16"
-    egress_only_gateway_id = "local"
-  }
+
 
   tags = {
     Name = "demoRT"
