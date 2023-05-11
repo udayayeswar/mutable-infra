@@ -57,12 +57,12 @@ resource "aws_route_table" "example" {
 
   route {
     cidr_block = "10.0.1.0/24"
-    gateway_id = igw-02d7e6a9c6afda95e
+    gateway_id = "igw-02d7e6a9c6afda95e"
   }
 
   route {
     ipv6_cidr_block        = "::/0"
-    egress_only_gateway_id = igw-02d7e6a9c6afda95e
+    egress_only_gateway_id = "igw-02d7e6a9c6afda95e"
   }
 
   tags = {
