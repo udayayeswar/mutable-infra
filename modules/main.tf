@@ -25,6 +25,14 @@ resource "aws_subnet" "subnet2" {
   }
 }
 
+resource "aws_internet_gateway" "gw" {
+  vpc_id = aws_vpc.main.id
+
+  tags = {
+    Name = "demoIGW"
+  }
+}
+
 
 resource "aws_security_group" "allow_ssh" {
   name        = "allow_ssh"
