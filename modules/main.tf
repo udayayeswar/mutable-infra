@@ -2,14 +2,20 @@ resource "aws_vpc" "main" {
   cidr_block = var.vpc_cidr
 }
 
-resource "aws_subnet" "main" {
-  vpc_id     = aws_vpc.main.id
-  cidr_block = "10.0.1.0/24"
-
-  tags = {
-    Name = "Main"
-  }
-}
+#resource "aws_network_interface" "multi-ip" {
+#  subnet_id   = aws_subnet.main.id
+#  private_ips = ["10.0.0.10", "10.0.0.11"]
+#}
+#
+#
+#resource "aws_subnet" "main" {
+#  vpc_id     = aws_vpc.main.id
+#  cidr_block = "10.0.1.0/24"
+#
+#  tags = {
+#    Name = "Main"
+#  }
+#}
 
 resource "aws_security_group" "allow_ssh" {
   name        = "allow_ssh"
@@ -18,8 +24,8 @@ resource "aws_security_group" "allow_ssh" {
 
   ingress {
     description      = "TLS from VPC"
-    from_port        = 443
-    to_port          = 443
+    from_port        = 22
+    to_port          = 22
     protocol         = "tcp"
     cidr_blocks      = [aws_vpc.main.cidr_block]
     ipv6_cidr_blocks = [aws_vpc.main.ipv6_cidr_block]
