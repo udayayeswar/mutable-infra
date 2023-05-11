@@ -36,9 +36,20 @@ resource "aws_internet_gateway" "gw" {
 resource "aws_instance" "web" {
   ami           = "ami-07acf41a58c76cc08"
   instance_type = "t3.micro"
+  subnet_id     =aws_subnet.subnet1.id
 
   tags = {
     Name = "demo-instance1"
+  }
+}
+
+resource "aws_instance" "web" {
+  ami           = "ami-07acf41a58c76cc08"
+  instance_type = "t3.micro"
+  subnet_id     =aws_subnet.subnet2.id
+
+  tags = {
+    Name = "demo-instance2"
   }
 }
 
