@@ -33,6 +33,15 @@ resource "aws_internet_gateway" "gw" {
   }
 }
 
+resource "aws_instance" "web" {
+  ami           = ami-07acf41a58c76cc08
+  instance_type = "t3.micro"
+
+  tags = {
+    Name = "demo-instance1"
+  }
+}
+
 
 resource "aws_security_group" "allow_ssh" {
   name        = "allow_ssh"
