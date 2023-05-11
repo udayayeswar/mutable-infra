@@ -52,6 +52,24 @@ resource "aws_instance" "web1" {
     Name = "demo-instance2"
   }
 }
+resource "aws_route_table" "example" {
+  vpc_id = aws_vpc.main.id
+
+  route {
+    cidr_block = "10.0.1.0/24"
+    gateway_id = igw-02d7e6a9c6afda95e
+  }
+
+  route {
+    ipv6_cidr_block        = "::/0"
+    egress_only_gateway_id = igw-02d7e6a9c6afda95e
+  }
+
+  tags = {
+    Name = "demoRT"
+  }
+}
+
 
 
 resource "aws_security_group" "allow_ssh" {
