@@ -21,7 +21,7 @@ resource "aws_subnet" "subnet2" {
   cidr_block = "10.0.3.0/24"
 
   tags = {
-    Name = "demo1"
+    Name = "demo2"
   }
 }
 
@@ -57,7 +57,7 @@ resource "aws_route_table" "example" {
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = "igw-02d7e6a9c6afda95e"
+    gateway_id = aws_internet_gateway.gw.id
   }
 
 
