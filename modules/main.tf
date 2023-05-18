@@ -61,13 +61,13 @@ resource "aws_route_table" "example" {
     Name = "demoRT-${count.index}"
   }
 }
-#resource "aws_route_table_association" "a" {
-#  subnet_id      = aws_subnet.foo.id
-#  route_table_id = aws_route_table.bar.id
-#}
-##
-#
-#
+resource "aws_route_table_association" "a" {
+  subnet_id      = aws_subnet.subnet1.id
+  route_table_id = aws_route_table.example.id
+}
+
+
+
 #resource "aws_security_group" "allow_ssh" {
 #  name        = "allow_ssh"
 #  description = "Allow ssh inbound traffic"
