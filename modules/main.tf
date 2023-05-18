@@ -46,21 +46,26 @@ resource "aws_internet_gateway" "gw" {
 #    Name = "demo-instance2"
 #  }
 #}
-#resource "aws_route_table" "example" {
-#  vpc_id = aws_vpc.main.id
-#
-#  route {
-#    cidr_block = "0.0.0.0/0"
-#    gateway_id = aws_internet_gateway.gw.id
-#  }
-#
-#
-#
-#  tags = {
-#    Name = "demoRT"
-#  }
+resource "aws_route_table" "example" {
+  count  =2
+  vpc_id = aws_vpc.main.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.gw.id
+  }
+
+
+
+  tags = {
+    Name = "demoRT-${count.index}"
+  }
+}
+#resource "aws_route_table_association" "a" {
+#  subnet_id      = aws_subnet.foo.id
+#  route_table_id = aws_route_table.bar.id
 #}
-#
+##
 #
 #
 #resource "aws_security_group" "allow_ssh" {
