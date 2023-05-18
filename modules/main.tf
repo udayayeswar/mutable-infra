@@ -8,7 +8,7 @@ resource "aws_vpc" "main" {
 }
 
 resource "aws_subnet" "subnet1" {
-  count      = 2
+  count      = 4
   vpc_id     = aws_vpc.main.id
   cidr_block = "10.0.${count.index}.0/24"
   availability_zone = "us-east-1a"
@@ -18,15 +18,7 @@ resource "aws_subnet" "subnet1" {
   }
 }
 
-#resource "aws_subnet" "subnet2" {
-#  vpc_id     = aws_vpc.main.id
-#  cidr_block = "10.0.3.0/24"
-#
-#  tags = {
-#    Name = "demo2"
-#  }
-#}
-#
+
 #resource "aws_internet_gateway" "gw" {
 #  vpc_id = aws_vpc.main.id
 #
