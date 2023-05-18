@@ -8,7 +8,7 @@ resource "aws_vpc" "main" {
 }
 
 resource "aws_subnet" "subnet1" {
-  count      = 4
+  count      = 2
   vpc_id     = aws_vpc.main.id
   cidr_block = "10.0.${count.index}.0/24"
   availability_zone = "us-east-1a"
@@ -19,14 +19,14 @@ resource "aws_subnet" "subnet1" {
 }
 
 
-#resource "aws_internet_gateway" "gw" {
-#  vpc_id = aws_vpc.main.id
-#
-#  tags = {
-#    Name = "demoIGW"
-#  }
-#}
-#
+resource "aws_internet_gateway" "gw" {
+  vpc_id = aws_vpc.main.id
+
+  tags = {
+    Name = "demoIGW"
+  }
+}
+
 #resource "aws_instance" "web" {
 #  ami                = "ami-07acf41a58c76cc08"
 #  instance_type      = "t3.micro"
