@@ -63,8 +63,8 @@ resource "aws_route_table" "example" {
 }
 resource "aws_route_table_association" "a" {
   count = 2
-  subnet_id      = "aws_subnet.subnet1.id"
-  route_table_id = aws_route_table.example[count.index]
+  subnet_id      = aws_subnet.subnet1.id
+  route_table_id = "aws_route_table.example.${count.index}"
 }
 
 
