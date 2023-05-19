@@ -47,24 +47,17 @@ resource "aws_route_table_association" "example" {
 
 
 resource "aws_instance" "web" {
+  count = 2
   ami                = "ami-07acf41a58c76cc08"
   instance_type      = "t3.micro"
-  subnet_id          = aws_subnet.subnet1.id
+  subnet_id          = aws_subnet.subnet1[count.index].id
    availability_zone = "us-east-1a"
   tags = {
-    Name = "demo-instance1"
+    Name = "demo-${count.index}"
   }
 }
 
-resource "aws_instance" "web1" {
-  ami           = "ami-07acf41a58c76cc08"
-  instance_type = "t3.micro"
-  subnet_id     =aws_subnet.subnet1.id
-  availability_zone = "us-east-1a"
-  tags = {
-    Name = "demo-instance2"
-  }
-}
+
 
 
 
