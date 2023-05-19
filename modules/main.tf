@@ -27,6 +27,25 @@ resource "aws_internet_gateway" "gw" {
   }
 }
 
+
+# Create the route table resources
+resource "aws_route_table" "example" {
+  for_each = var.subnets
+
+  vpc_id = aws_vpc.main.id
+}
+
+# Associate the route tables with the subnets
+resource "aws_route_table_association" "example" {
+  for_each = var.subnets
+
+  subnet_id      = each.value.id
+  route_table_id = aws_route_table.example[each.key].id
+}
+
+
+
+
 #resource "aws_instance" "web" {
 #  ami                = "ami-07acf41a58c76cc08"
 #  instance_type      = "t3.micro"
@@ -46,28 +65,28 @@ resource "aws_internet_gateway" "gw" {
 #    Name = "demo-instance2"
 #  }
 #}
-resource "aws_route_table" "example" {
-  count  =2
-  vpc_id = aws_vpc.main.id
-
-  route {
-    cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.gw.id
-  }
-
-
-
-  tags = {
-    Name = "demoRT-${count.index}"
-  }
-}
-resource "aws_route_table_association" "a" {
-  count = 2
-  subnet_id      = "aws_subnet.${count.index}"
-  route_table_id = "aws_route_table.example.${count.index}"
-}
-
-
+#resource "aws_route_table" "example" {
+#  count  =2
+#  vpc_id = aws_vpc.main.id
+#
+#  route {
+#    cidr_block = "0.0.0.0/0"
+#    gateway_id = aws_internet_gateway.gw.id
+#  }
+#
+#
+#
+#  tags = {
+#    Name = "demoRT-${count.index}"
+#  }
+#}
+#resource "aws_route_table_association" "a" {
+#  for_each =
+#  subnet_id      = "aws_subnet.${count.index}"
+#  route_table_id = "aws_route_table.example.${count.index}"
+#}
+#
+#
 
 #resource "aws_security_group" "allow_ssh" {
 #  name        = "allow_ssh"
