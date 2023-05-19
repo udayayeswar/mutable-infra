@@ -46,47 +46,31 @@ resource "aws_route_table_association" "example" {
 
 
 
-#resource "aws_instance" "web" {
-#  ami                = "ami-07acf41a58c76cc08"
-#  instance_type      = "t3.micro"
-#  subnet_id          = aws_subnet.subnet1.id
-#   availability_zone = "us-east-1c"
-#  tags = {
-#    Name = "demo-instance1"
-#  }
-#}
-#
-#resource "aws_instance" "web1" {
-#  ami           = "ami-07acf41a58c76cc08"
-#  instance_type = "t3.micro"
-#  subnet_id     =aws_subnet.subnet2.id
-#  availability_zone = "us-east-1c"
-#  tags = {
-#    Name = "demo-instance2"
-#  }
-#}
-#resource "aws_route_table" "example" {
-#  count  =2
-#  vpc_id = aws_vpc.main.id
-#
-#  route {
-#    cidr_block = "0.0.0.0/0"
-#    gateway_id = aws_internet_gateway.gw.id
-#  }
-#
-#
-#
-#  tags = {
-#    Name = "demoRT-${count.index}"
-#  }
-#}
-#resource "aws_route_table_association" "a" {
-#  for_each =
-#  subnet_id      = "aws_subnet.${count.index}"
-#  route_table_id = "aws_route_table.example.${count.index}"
-#}
-#
-#
+resource "aws_instance" "web" {
+  ami                = "ami-07acf41a58c76cc08"
+  instance_type      = "t3.micro"
+  subnet_id          = aws_subnet.subnet1.id
+   availability_zone = "us-east-1a"
+  tags = {
+    Name = "demo-instance1"
+  }
+}
+
+resource "aws_instance" "web1" {
+  ami           = "ami-07acf41a58c76cc08"
+  instance_type = "t3.micro"
+  subnet_id     =aws_subnet.subnet1.id
+  availability_zone = "us-east-1a"
+  tags = {
+    Name = "demo-instance2"
+  }
+}
+
+
+
+
+
+
 
 #resource "aws_security_group" "allow_ssh" {
 #  name        = "allow_ssh"
