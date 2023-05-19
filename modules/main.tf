@@ -30,17 +30,17 @@ resource "aws_internet_gateway" "gw" {
 
 # Create the route table resources
 resource "aws_route_table" "example" {
-  for_each = var.subnets
+  count = var.aws_subnet
+
 
   vpc_id = aws_vpc.main.id
 }
 
 # Associate the route tables with the subnets
 resource "aws_route_table_association" "example" {
-  for_each = var.subnets
-
-  subnet_id      = each.value.id
-  route_table_id = aws_route_table.example[each.key].id
+  count = var.aws_subnet
+  subnet_id      = "aws_subnet.subnet1.${count.index}.id"
+  route_table_id = "aws_route_table.example.${count.index}.id"
 }
 
 

@@ -6,11 +6,11 @@ variable "aws_subnet" {
   default = 2
 }
 
-#variable "aws_subnet" {}
+
 # Define the subnets and their corresponding route tables
 variable "subnets" {
   type = map(object({
-    id           = number
+    id           = string
     route_table_id = string
   }))
   default = {
