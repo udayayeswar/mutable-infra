@@ -15,11 +15,11 @@ variable "subnets" {
   }))
   default = {
     subnet1 = {
-      id           = "subnet-1"
+      id           = "demo.subnet-1"
       route_table_id = "rtb-1"
     }
     subnet2 = {
-      id           = "subnet-2"
+      id           = "demo.subnet-2"
       route_table_id = "rtb-2"
     }
   }
