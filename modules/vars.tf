@@ -1,5 +1,8 @@
 variable "vpc_cidr" {}
-variable "aws_subnet" {}
+variable "aws_subnet"{
+  default = true
+}
+#variable "aws_subnet" {}
 # Define the subnets and their corresponding route tables
 variable "subnets" {
   type = map(object({
