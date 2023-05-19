@@ -1,7 +1,11 @@
 variable "vpc_cidr" {}
-variable "aws_subnet"{
-  default = true
+
+
+variable "aws_subnet" {
+  type    = number
+  default = 2
 }
+
 #variable "aws_subnet" {}
 # Define the subnets and their corresponding route tables
 variable "subnets" {
