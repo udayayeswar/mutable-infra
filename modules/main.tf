@@ -52,10 +52,12 @@ resource "aws_instance" "web" {
   instance_type      = "t3.micro"
   subnet_id          = aws_subnet.subnet1[count.index].id
    availability_zone = "us-east-1a"
+  ecs_associate_public_ip_address = "true"
+}
   tags = {
     Name = "demo-${count.index}"
   }
-}
+
 
 
 
