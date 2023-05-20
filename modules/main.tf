@@ -7,7 +7,6 @@ resource "aws_vpc" "main" {
 
 }
 
-
 resource "aws_subnet" "subnet1" {
   vpc_id     = aws_vpc.main.id
   cidr_block = "10.0.0.0/24"
@@ -17,7 +16,6 @@ resource "aws_subnet" "subnet1" {
     Name = "public-subnet"
   }
 }
-
 
 resource "aws_subnet" "subnet2" {
   vpc_id     = aws_vpc.main.id
@@ -76,16 +74,33 @@ resource "aws_route_table_association" "example" {
 #  route_table_id = aws_route_table.example.id
 #}
 
-resource "aws_instance" "web" {
-  ami                             = "ami-07acf41a58c76cc08"
-  instance_type                   = "t3.micro"
-  subnet_id                       = aws_subnet.subnet1.id
-  availability_zone               = "us-east-1a"
-  associate_public_ip_address     = true  # Enable automatic public IP assignment
+resource "aws_instance" "bastion_host" {
+  ami                    = "ami-07acf41a58c76cc08"
+  instance_type          = "t3.micro"
+  key_name               = "your_key_pair_name"
+  subnet_id              = aws_subnet.subnet1.id
+  associate_public_ip_address = true
+
+  # Security Group for SSH access
+  vpc_security_group_ids = [aws_security_group.bastion_sg.id]
 
   tags = {
-    Name = "public-instance"
+    Name = "Bastion Host"
   }
+}
+
+resource "aws_security_group" "bastion_sg" {
+  name        = "bastion_sg"
+  description = "Security group for bastion host"
+
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  # Add any additional inbound rules as needed
 }
 
 
