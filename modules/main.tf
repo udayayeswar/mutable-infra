@@ -47,15 +47,14 @@ resource "aws_route_table_association" "example" {
 
 
 resource "aws_instance" "web" {
-  count = 2
   ami                = "ami-07acf41a58c76cc08"
   instance_type      = "t3.micro"
-  subnet_id          = aws_subnet.subnet1[count.index].id
+  subnet_id          = aws_subnet.subnet1.id
    availability_zone = "us-east-1a"
   ecs_associate_public_ip_address = "true"
 }
   tags = {
-    Name = "demo-${count.index}"
+    Name = "public-instance"
   }
 
 
