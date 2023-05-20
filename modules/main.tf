@@ -14,18 +14,18 @@ resource "aws_subnet" "subnet1" {
   availability_zone = "us-east-1a"
 
   tags = {
-    Name = "public-subnet}"
+    Name = "public-subnet"
   }
 }
 
 
 resource "aws_subnet" "subnet2" {
   vpc_id     = aws_vpc.main.id
-  cidr_block = "10.0.0.0/16"
+  cidr_block = "10.0.0.0/24"
   availability_zone = "us-east-1a"
 
   tags = {
-    Name = "private-subnet}"
+    Name = "private-subnet"
   }
 }
 
