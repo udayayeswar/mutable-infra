@@ -77,7 +77,7 @@ resource "aws_route_table_association" "example" {
 resource "aws_instance" "bastion_host" {
   ami                    = "ami-07acf41a58c76cc08"
   instance_type          = "t3.micro"
-  key_name               = "your_key_pair_name"
+  key_name               = "new-key-pair"
   subnet_id              = aws_subnet.subnet1.id
   associate_public_ip_address = true
 
