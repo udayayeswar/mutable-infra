@@ -7,14 +7,25 @@ resource "aws_vpc" "main" {
 
 }
 
+
 resource "aws_subnet" "subnet1" {
-  count      = var.aws_subnet
   vpc_id     = aws_vpc.main.id
-  cidr_block = "10.0.${count.index}.0/24"
+  cidr_block = "10.0.0.0/24"
   availability_zone = "us-east-1a"
 
   tags = {
-    Name = "demo-${count.index}"
+    Name = "public-subnet}"
+  }
+}
+
+
+resource "aws_subnet" "subnet1" {
+  vpc_id     = aws_vpc.main.id
+  cidr_block = "10.0.1.0/16"
+  availability_zone = "us-east-1a"
+
+  tags = {
+    Name = "private-subnet}"
   }
 }
 
