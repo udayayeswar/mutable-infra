@@ -54,6 +54,17 @@ resource "aws_route_table_association" "example" {
   route_table_id = aws_route_table.example[count.index].id
 }
 
+resource "aws_instance" "web" {
+  ami                             = "ami-07acf41a58c76cc08"
+  instance_type                   = "t3.micro"
+  subnet_id                       = aws_subnet.subnet1.id
+  availability_zone               = "us-east-1a"
+  associate_public_ip_address     = true  # Enable automatic public IP assignment
+
+  tags = {
+    Name = "public-instance"
+  }
+}
 
 
 
@@ -62,10 +73,10 @@ resource "aws_instance" "web" {
   instance_type                   = "t3.micro"
   subnet_id                       = aws_subnet.subnet1.id
   availability_zone               = "us-east-1a"
-  ecs_associate_public_ip_address = true
+
 
   tags = {
-    Name = "public-instance"
+    Name = "private-instance"
   }
 }
 
