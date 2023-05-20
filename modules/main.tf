@@ -92,7 +92,7 @@ resource "aws_instance" "bastion_host" {
 resource "aws_security_group" "bastion_sg" {
   name        = "bastion_sg"
   description = "Security group for bastion host"
-  vpc_id      = "demo-vpc.main.id"
+  vpc_id      = aws_vpc.main.id
 
   ingress {
     from_port   = 22
