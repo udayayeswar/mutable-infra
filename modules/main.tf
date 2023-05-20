@@ -93,7 +93,7 @@ resource "aws_instance" "web" {
 resource "aws_instance" "web1" {
   ami                             = "ami-07acf41a58c76cc08"
   instance_type                   = "t3.micro"
-  subnet_id                       = aws_subnet.subnet1.id
+  subnet_id                       = aws_subnet.subnet2.id
   availability_zone               = "us-east-1a"
 
 
