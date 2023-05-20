@@ -37,22 +37,44 @@ resource "aws_internet_gateway" "gw" {
     Name = "demoIGW"
   }
 }
-
-
-# Create the route table resources
 resource "aws_route_table" "example" {
-  count = var.aws_subnet
-
-
   vpc_id = aws_vpc.main.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.gw.id
+  }
+
+  tags = {
+    Name = "example-route-table"
+  }
 }
 
-# Associate the route tables with the subnets
 resource "aws_route_table_association" "example" {
-  count = var.aws_subnet
-  subnet_id      = aws_subnet.subnet1[count.index].id
-  route_table_id = aws_route_table.example[count.index].id
+  subnet_id      = aws_subnet.subnet1.id
+  route_table_id = aws_route_table.example.id
 }
+
+
+
+## Create the route table resources
+#resource "aws_route_table" "example" {
+#  count = var.aws_subnet
+#
+#
+#  vpc_id = aws_vpc.main.id
+#}
+#
+## Associate the route tables with the subnets
+#resource "aws_route_table_association" "example" {
+#  subnet_id      = aws_subnet.subnet1.id
+#  route_table_id = aws_route_table.example.id
+#}
+#
+#resource "aws_route_table_association" "example1" {
+#  subnet_id      = aws_subnet.subnet1.id
+#  route_table_id = aws_route_table.example.id
+#}
 
 resource "aws_instance" "web" {
   ami                             = "ami-07acf41a58c76cc08"
