@@ -75,7 +75,7 @@ resource "aws_route_table_association" "example" {
 #}
 
 resource "aws_instance" "bastion_host" {
-  ami                    = "ami-07acf41a58c76cc08"
+  ami                    = "ami-0715c1897453cabd1"
   instance_type          = "t3.micro"
   key_name               = "new-key-pair"
   subnet_id              = aws_subnet.subnet1.id
@@ -107,7 +107,7 @@ resource "aws_security_group" "bastion_sg" {
 
 
 resource "aws_instance" "web1" {
-  ami                             = "ami-07acf41a58c76cc08"
+  ami                             = "ami-0715c1897453cabd1"
   instance_type                   = "t3.micro"
   subnet_id                       = aws_subnet.subnet2.id
   availability_zone               = "us-east-1a"
