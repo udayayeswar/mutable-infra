@@ -118,6 +118,30 @@ resource "aws_instance" "web1" {
   }
 }
 
+resource "aws_nat_gateway" "example" {
+  connectivity_type = "private"
+  subnet_id         = aws_subnet.subnet2.id
+}
+
+resource "aws_launch_template" "default" {
+  name = "demo-launch-template"
+  image_id = "ami-0715c1897453cabd1"
+  instance_type = "t2.micro"
+}
+
+
+resource "aws_autoscaling_group" "asg" {
+  desired_capacity = 1
+  max_size         = 1
+  min_size         = 1
+
+  launch_template {
+    id      = aws_launch_template.default.id
+    version = "$Latest"
+  }
+
+
+}
 
 
 
