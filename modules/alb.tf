@@ -1,5 +1,5 @@
 resource "aws_lb" "test" {
-  name               = "load balancer1"
+  name               = "loadbalancer1"
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.allow_ssh.id]
