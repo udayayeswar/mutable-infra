@@ -110,7 +110,7 @@ resource "aws_instance" "web1" {
   ami                             = "ami-0715c1897453cabd1"
   instance_type                   = "t3.micro"
   subnet_id                       = aws_subnet.subnet2.id
-  availability_zone               = "us-east-1a"
+  availability_zone               = "us-east-1b"
 
 
   tags = {
