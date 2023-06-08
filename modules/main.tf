@@ -123,28 +123,6 @@ resource "aws_nat_gateway" "example" {
   subnet_id         = aws_subnet.subnet2.id
 }
 
-resource "aws_launch_template" "default" {
-  name = "demo-launch-template"
-  image_id = "ami-0715c1897453cabd1"
-  instance_type = "t2.micro"
-}
-
-
-resource "aws_autoscaling_group" "asg" {
-  name             = "demo_asg"
-  desired_capacity = 1
-  max_size         = 1
-  min_size         = 1
-  vpc_zone_identifier = [aws_subnet.subnet1.id]
-
-  launch_template {
-    id      = aws_launch_template.default.id
-    version = "$Latest"
-  }
-
-
-}
-
 resource "aws_security_group" "allow_ssh" {
   name        = "allow_ssh"
   description = "Allow ssh inbound traffic"
